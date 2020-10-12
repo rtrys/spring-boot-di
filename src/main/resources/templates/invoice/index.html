@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+</head>
+<body>
+	<h2 th:text="${title}"></h2>
+	<br/>
+
+	<span th:text="${invoice.client.firstName}"></span>
+	<span th:text="${invoice.client.lastName}"></span>
+	<br/>
+	<span th:text="${invoice.description}"></span>
+	<br/>
+	<table th:if="${not invoice.items.isEmpty()}">
+		<thead>
+			<tr>
+				<th>Producto</th>
+				<th>Precio</th>
+				<th>Cantidad</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item: ${invoice.items}">
+				<td th:text="${item.product.name}"></td>
+				<td th:text="${item.product.price}"></td>
+				<td th:text="${item.amount}"></td>
+				<td th:text="${item.product.price * item.amount}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
